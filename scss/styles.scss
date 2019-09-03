@@ -1,117 +1,206 @@
-$break-large: 1024px;
-$break-small: 1023px;
-
+$break-large: 768px;
+$primaryColor: #AE8620;
 
 body {
     margin: 0;
     padding: 0;
+    h2 {
+        margin: 0;
+        span {
+            color: $primaryColor;
+            border-bottom: 1px solid $primaryColor;
+        }
+    }
+    section {
+        margin: 20px 0;
+        padding: 0 10px;
+    }
+    // HEADER
     header {
         &.ms-intro-section {
+            // Header navigation & logo
             .ms-header-container {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: space-between;
-                .ms-logo-wrapper {
-                    width: 20%;
-                    img {
-                        display: block;
-                        padding-left: 10px;
-                        width: 100%;
+                &.ms-on-scroll {
+                    position: fixed;
+                    width: 100%;
+                    background-color: rgba(255, 255, 255, 0.87);
+                    z-index: 99999;
+                    -webkit-box-shadow: 0px 4px 15px -5px rgba(0,0,0,0.75);
+                    -moz-box-shadow: 0px 4px 15px -5px rgba(0,0,0,0.75);
+                    box-shadow: 0px 4px 15px -5px rgba(0,0,0,0.75);
+                    &.ms-active {
+                        background-color: #fff;
                     }
                 }
-                .ms-mob-nav-btn-wrapper {
-                    width: 25px;
-                    margin-right: 15px;
-                    @media screen and (min-width: $break-large) {
-                        display: none;
-                    }
-                    .ms-mob-nav-btn-bar {
-                        background-color: #AE8620;
-                        height: 5px;
-                        width: 100%;
-                        &.ms-first {
-
-                        }
-                        &.ms-second {
-                            margin-top: 5px;
-                        }
-                        &.ms-third {
-                            margin-top: 5px;
-                        }
-                    }
-                }
-                nav {
-                    @media screen and (max-width: $break-small) {
-                        -webkit-transform: translateX(-100%);
-                        transform: translateX(-100%);
-                        left: 0;
-                        -webkit-transition: all .45s cubic-bezier(.3,0,.15,1);
-                        -moz-transition: all .45s cubic-bezier(.3,0,.15,1);
-                        -ms-transition: all .45s cubic-bezier(.3,0,.15,1);
-                        -o-transition: all .45s cubic-bezier(.3,0,.15,1);
-                        transition: all .45s cubic-bezier(.3,0,.15,1);
-                        -webkit-transform-style: preserve-3d;
-                        transform-style: preserve-3d;
-                        width: 240px;
-                        background: #fff;
-                        position: fixed;
-                        top: 0;
-                        bottom: 0;
-                        overflow: auto;
-                        -webkit-overflow-scrolling: touch;
-                        z-index: 8000;
-                        &.ms-active {
+                .ms-header-wrapper {
+                    position: relative;
+                    .ms-logo-wrapper {
+                        img {
                             display: block;
-                            -webkit-transform: translateX(0);
-                            transform: translateX(0);
+                            padding-left: 10px;
+                            max-height: 110px;
                         }
                     }
-                    @media screen and (min-width: $break-large) {
-                        display: block;
-                    }
-                    .ms-nav-close-btn {
-                        background-color: #AE8620;
-                        color: #fff;
-                        padding: 8px;
-                        position: relative;
-                        &:after {
-                            top: 50%;
-                            margin-top: -3px;
-                            right: 12px;
-                            position: absolute;
-                            content: "";
-                            width: 5px;
+                    .ms-mob-nav-btn-wrapper {
+                        width: 25px;
+                        position: absolute;
+                        top: 30px;
+                        right: 30px;
+                        @media screen and (min-width: $break-large) {
+                            display: none;
+                        }
+                        .ms-mob-nav-btn-bar {
+                            background-color: $primaryColor;
                             height: 5px;
-                            border-right: 1px solid #fff;
-                            border-bottom: 1px solid #fff;
-                            -moz-transform: rotate(-45deg);
-                            -ms-transform: rotate(-45deg);
-                            -webkit-transform: rotate(-45deg);
-                            transform: rotate(-45deg);
+                            width: 100%;
+                            &+.ms-mob-nav-btn-bar {
+                                margin-top: 5px;
+                            }
                         }
                     }
-                    ul {
+                    nav {
+                        @media screen and (max-width: $break-large) {
+                            -webkit-transform: translateX(-100%);
+                            transform: translateX(-100%);
+                            left: 0;
+                            -webkit-transition: all .45s cubic-bezier(.3,0,.15,1);
+                            -moz-transition: all .45s cubic-bezier(.3,0,.15,1);
+                            -ms-transition: all .45s cubic-bezier(.3,0,.15,1);
+                            -o-transition: all .45s cubic-bezier(.3,0,.15,1);
+                            transition: all .45s cubic-bezier(.3,0,.15,1);
+                            -webkit-transform-style: preserve-3d;
+                            transform-style: preserve-3d;
+                            width: 240px;
+                            background: #fff;
+                            position: fixed;
+                            top: 110px;
+                            bottom: 0;
+                            overflow: auto;
+                            -webkit-overflow-scrolling: touch;
+                            z-index: 8000;
+                            &.ms-active {
+                                display: block;
+                                -webkit-transform: translateX(0);
+                                transform: translateX(0);
+                            }
+                        }
+                        @media screen and (min-width: $break-large) {
+                            display: block;
+                        }
+                        .ms-nav-close-btn {
+                            background-color: $primaryColor;
+                            color: #fff;
+                            padding: 8px;
+                            position: relative;
+                            &:after {
+                                top: 50%;
+                                margin-top: -3px;
+                                right: 12px;
+                                position: absolute;
+                                content: "";
+                                width: 5px;
+                                height: 5px;
+                                border-right: 1px solid #fff;
+                                border-bottom: 1px solid #fff;
+                                -moz-transform: rotate(-45deg);
+                                -ms-transform: rotate(-45deg);
+                                -webkit-transform: rotate(-45deg);
+                                transform: rotate(-45deg);
+                            }
+                        }
+                        ul {
+                            list-style-type: none;
+                            margin: 0;
+                            padding: 20px;
+
+                            li {
+                                a {
+                                    text-decoration: none;
+                                    color: $primaryColor;
+                                    text-transform: uppercase;
+                                    width: 100%;
+                                    display: block;
+                                    margin-bottom: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            // Header slider
+            .ms-header-slider-container {
+                position: relative;
+                .ms-header-slider-wrapper {
+                    ul.ms-header-slider-list {
                         list-style-type: none;
                         margin: 0;
-                        padding: 20px;
-
+                        padding: 0;
                         li {
-                            a {
-                                text-decoration: none;
-                                color: #AE8620;
-                                text-transform: uppercase;
-                                width: 100%;
+                            display: none;
+                            &.ms-active {
                                 display: block;
-                                margin-bottom: 5px;
                             }
+                            img {
+                                display: block;
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+                ul.ms-heder-slider-bullet-list {
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    margin: 10px 0;
+                    padding: 0;
+                    list-style-type: none;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    li.ms-header-slider-bullet {
+                        border: 1px solid #fff;
+                        border-radius: 50%;
+                        margin: 5px 10px;
+                        width: 10px;
+                        height: 10px;
+                        &.ms-active {
+                            background-color: #fff;
                         }
                     }
                 }
             }
         }
     }
+    // ABOUT US
+    .ms-about-us-section {
+        
+    }
+    // GALLERY
+    .ms-gallery-section {
+        background-color: #000;
+        h2 {
+            padding: 10px 0;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            @media screen and (min-width: 769px) {
+                flex-direction: row;
+            }
+            li {
+                img {
+                    margin: 10px 10px;
+                    display: block;
+                    width: calc(100% - 20px);
+                }
+            }
+        }
+    }
+    // OVERLAY
     .ms-overlay {
         width: 100%;
         height: 100%;
@@ -122,9 +211,11 @@ body {
         visibility: hidden;
         background: rgba(123,123,123,.7);
         position: fixed;
-        &.ms-active {
-            opacity: 1;
-            visibility: visible;
+        @media screen and (max-width: $break-large) {
+            &.ms-active {
+                opacity: 1;
+                visibility: visible;
+            }
         }
     }
 }
