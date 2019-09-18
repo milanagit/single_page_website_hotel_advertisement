@@ -39,6 +39,9 @@ $(document).ready(function() {
         // Close SIDEBAR MENU on mobile
         $('.ms-overlay, .ms-nav-close-btn').on('click', function() {
             $('.ms-header-container nav, .ms-overlay, .ms-header-container').removeClass('ms-active');
+            $('.ms-gallery-section-image-holder-container').detach();
+            $('body').removeClass('no-scroll');
+            $('.ms-header-container').addClass('ms-on-scroll');
         });
 
         // Scroll to the MENU ITEM when selected from the main menu
@@ -112,6 +115,42 @@ $(document).ready(function() {
                 }
             });
         });
+
+        // On GALLERY image select - create large image
+        $('.ms-gallery-section img').on('click', function() {
+            var largerImage = $(this).clone(),
+                imageHolder = '<div class="ms-gallery-section-image-holder-container"><div class="ms-gallery-section-image-holder-wrapper"><i class="fa fa-times-thin fa-2x" aria-hidden="true"></i></div></div>';
+            
+            if(!$('.ms-gallery-section-image-holder').length) {
+                $('.ms-gallery-section').append(imageHolder);
+                $('.ms-overlay').addClass('ms-active');
+                $('body').addClass('no-scroll');
+                $('.ms-header-container.ms-on-scroll').removeClass('ms-on-scroll');
+            }
+            $('.ms-gallery-section-image-holder-wrapper').append(largerImage);
+
+            // Close GALLERY large image
+            $('.ms-gallery-section-image-holder-wrapper i').on('click', function() {
+                $(this).parents('.ms-gallery-section-image-holder-container').detach();
+                $('.ms-overlay').removeClass('ms-active');
+                $('body').removeClass('no-scroll');
+                $('.ms-header-container').addClass('ms-on-scroll');
+            });
+        });
+
+        // CUSTOMERS SLIDER functionality
+        setInterval(function() {
+            var currentCustomer = $('.ms-customer-container.ms-active'),
+                nextCustomer = $('.ms-customer-container.ms-active+.ms-customer-container');
+            if(!$(nextCustomer).length) {
+                $(currentCustomer).removeClass('ms-active');
+                $('.ms-customer-container').first().addClass('ms-active');
+            } else {
+                $(currentCustomer).removeClass('ms-active');
+                $(nextCustomer).addClass('ms-active');
+            }
+        }
+        , 5000);
     }
 
 });
