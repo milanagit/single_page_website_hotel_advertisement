@@ -49,6 +49,7 @@ $(document).ready(function() {
             var selectedMenuItemIndex;
             
             $(this).addClass('ms-clicked');
+            $('.ms-header-container.ms-active').removeClass('ms-active');
             $('.ms-header-wrapper nav ul li').each(function(index) {
                 if($(this).hasClass('ms-clicked')) {
                     selectedMenuItemIndex = index;
@@ -145,9 +146,11 @@ $(document).ready(function() {
             if(!$(nextCustomer).length) {
                 $(currentCustomer).removeClass('ms-active');
                 $('.ms-customer-container').first().addClass('ms-active');
+                $('.ms-customer-container').first().show("slide", { direction: "right" }, 1000);
             } else {
                 $(currentCustomer).removeClass('ms-active');
                 $(nextCustomer).addClass('ms-active');
+                $(nextCustomer).show("slide", { direction: "right" }, 1000);
             }
         }
         , 5000);
